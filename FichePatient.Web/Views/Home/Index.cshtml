@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Accueil";
+}
+
+<div class="jumbotron">
+    <h2>Gestion des fiches patient</h2>    
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Pédicure médicale</h2>
+        <img src="~/Content/images/pedicure-banner.png" alt="pedicure-banner" class="img-responsive" style="height:300px;" />        
+        &nbsp;
+        <p>@Html.ActionLink("Allez à la section", "Index", "Patient", null,  new { @class="btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Réflexologie plantaire</h2>
+        <img src="~/Content/images/reflexologie-banner.jpg" alt="pedicure-banner" class="img-responsive" style="height:300px;" />
+        &nbsp;
+        <p>@Html.ActionLink("Allez à la section", "Index", "PatientReflexio", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Esthétique</h2>
+        <img src="~/Content/images/esthetique-banner.jpg" alt="pedicure-banner" class="img-responsive" style="height:300px;" />
+        &nbsp;
+        <p>@Html.ActionLink("Allez à la section", "Index", "PatientEsthetique", null, new { @class = "btn btn-default" })</p>
+    </div>
+</div>

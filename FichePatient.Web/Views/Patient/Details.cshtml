@@ -1,0 +1,728 @@
+﻿@model FichePatient.Web.ViewModels.PatientViewModel
+@using FichePatient.DAL.UnitOfWork
+
+@{
+    ViewBag.Title = "Détail - " + Model.patient.NOM_FAMILLE + " " + Model.patient.PRENOM;
+}
+
+<style>
+    /* Style the button that is used to open and close the collapsible content */
+    .collapsible {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .collapsible:hover {
+            background-color: #ccc;
+        }
+
+    /* Style the collapsible content. Note: hidden by default */
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .collapsible:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: white;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .active:after {
+        content: "\2796"; /* Unicode character for "minus" sign (-) */
+    }
+
+    .vertical-align {
+        padding-top: 11px;
+    }
+</style>
+
+<div class="jumbotron">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<p>@Html.ActionLink("Editer", "Edit", new { id = Model.patient.ID }, new { @class = "pull-right btn btn-default", style="margin-bottom:15px;" })</p>
+
+<form class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <button type="button" class="collapsible">Données patient</button>
+    <div class="content">
+        &nbsp;
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.CIVILITE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.CIVILITE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.NOM_FAMILLE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.NOM_FAMILLE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.PRENOM, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.PRENOM, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.RUE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.RUE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.NUMERO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.NUMERO, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.LOCALITE_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.Raw(new UnitOfWork().LocaliteRepository.GetEntity(Model.patient.LOCALITE_ID).NOM)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.DATE_NAISSANCE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.Raw(Model.patient.DATE_NAISSANCE.ToString("dd/MM/yyyy"))
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.TELEPHONE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.TELEPHONE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.MEDECIN_TRAITANT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.MEDECIN_TRAITANT, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.patient.MEDECIN_TRAITANT_TELEPHONE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 vertical-align">
+                @Html.DisplayFor(model => model.patient.MEDECIN_TRAITANT_TELEPHONE, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+    &nbsp;
+</form>
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <button type="button" class="collapsible">Etat de santé</button>
+    <div class="content">
+        &nbsp;
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.AUTO_EXAMEN_POSSIBLE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.AUTO_EXAMEN_POSSIBLE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.AUTO_EXAMEN_POSSIBLE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Monofilament 10 g", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.LabelFor(model => model.etatSante.MONOFILAMENT_PG_FAIT, htmlAttributes: new { @class = "control-label col-md-1", style = "color:red;" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.MONOFILAMENT_PG_FAIT)
+                    </div>
+                </div>
+                <div class="col-md-2  vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.MONOFILAMENT_PG_COTE, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-8  vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.MONOFILAMENT_PG_FAIT_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            &nbsp;
+            <div class="col-md-9 col-md-offset-3">
+                @Html.LabelFor(model => model.etatSante.MONOFILAMENT_PD_FAIT, htmlAttributes: new { @class = "control-label col-md-1", style = "color:green;" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.MONOFILAMENT_PD_FAIT)
+                    </div>
+                </div>
+                <div class="col-md-2 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.MONOFILAMENT_PD_COTE, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-md-8 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.MONOFILAMENT_PD_FAIT_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Diabète", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9 vertical-align">
+                @Html.LabelFor(model => model.etatSante.DIABETE_TYPE_1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.DIABETE_TYPE_1)
+                    </div>
+                </div>
+                <div class="col-md-9 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.DIABETE_TYPE_1_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            &nbsp;
+            <div class="col-md-9 col-md-offset-3">
+                @Html.LabelFor(model => model.etatSante.DIABETE_TYPE_2, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.DIABETE_TYPE_2)
+                    </div>
+                </div>
+                <div class="col-md-9 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.DIABETE_TYPE_2_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            &nbsp;
+            <div class="col-md-9 col-md-offset-3">
+                &nbsp;
+                @Html.LabelFor(model => model.etatSante.DIABETE_SECONDAIRE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.DIABETE_SECONDAIRE)
+                    </div>
+                </div>
+                <div class="col-md-9 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.DIABETE_SECONDAIRE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Prothèse genou", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.LabelFor(model => model.etatSante.PROTHESE_GENOU_G, htmlAttributes: new { @class = "control-label col-md-1", style = "color:red;" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.PROTHESE_GENOU_G)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.PROTHESE_GENOU_G_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            &nbsp;
+            <div class="col-md-9 col-md-offset-3">
+                @Html.LabelFor(model => model.etatSante.PROTHESE_GENOU_D, htmlAttributes: new { @class = "control-label col-md-1", style = "color:green;" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.PROTHESE_GENOU_D)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.PROTHESE_GENOU_D_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Prothèse hanche", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.LabelFor(model => model.etatSante.PROTHESE_HANCHE_G, htmlAttributes: new { @class = "control-label col-md-1", style = "color:red;" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.PROTHESE_HANCHE_G)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.PROTHESE_HANCHE_G_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            &nbsp;
+            <div class="col-md-9 col-md-offset-3">
+                @Html.LabelFor(model => model.etatSante.PROTHESE_HANCHE_D, htmlAttributes: new { @class = "control-label col-md-1", style = "color:green;" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.PROTHESE_HANCHE_D)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.PROTHESE_HANCHE_D_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.MALADIES_CARDIAQUES, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.MALADIES_CARDIAQUES)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.MALADIES_CARDIAQUES_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.VALVE_CARDIAQUE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.VALVE_CARDIAQUE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.VALVE_CARDIAQUE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.ANTI_COAGULANT, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.ANTI_COAGULANT)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.ANTI_COAGULANT_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.THYROIDE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.THYROIDE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.THYROIDE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.TRANSPLANTE_RENAL, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.TRANSPLANTE_RENAL)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.TRANSPLANTE_RENAL_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.ALLERGIES, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.ALLERGIES)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.ALLERGIES_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.AUTRE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.AUTRE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.AUTRE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    &nbsp;
+    <button type="button" class="collapsible">Circulation sanguine au niveau des jambes</button>
+    <div class="content">
+        &nbsp;
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.CIRCULATION_SANGUINE_NORMALE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.CIRCULATION_SANGUINE_NORMALE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.CIRCULATION_SANGUINE_NORMALE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.CIRCULATION_SANGUINE_VARICES, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.CIRCULATION_SANGUINE_VARICES)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.CIRCULATION_SANGUINE_VARICES_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.CIRCULATION_SANGUINE_OEDEME, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.CIRCULATION_SANGUINE_OEDEME)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.CIRCULATION_SANGUINE_OEDEME_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    &nbsp;
+    <button type="button" class="collapsible">Trouble de sudation</button>
+    <div class="content">
+        &nbsp;
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.TROUBLE_SUDATION_ANIDROSE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.TROUBLE_SUDATION_ANIDROSE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.TROUBLE_SUDATION_ANIDROSE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.TROUBLE_SUDATION_HYPERHYDROSE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.TROUBLE_SUDATION_HYPERHYDROSE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.TROUBLE_SUDATION_HYPERHYDROSE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.TROUBLE_SUDATION_BROMIDROSE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.TROUBLE_SUDATION_BROMIDROSE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.TROUBLE_SUDATION_BROMIDROSE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    &nbsp;
+    <button type="button" class="collapsible">Hyperkeratoses</button>
+    <div class="content">
+        &nbsp;
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_DURILLON, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_DURILLON)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_DURILLON_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_COR_PERI_UNGUEAL, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_PERI_UNGUEAL)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_PERI_UNGUEAL_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_COR_SOUS_UNGUEAL, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_SOUS_UNGUEAL)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_SOUS_UNGUEAL_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_COR_ARTICULATION_INTERPHA, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_ARTICULATION_INTERPHA)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_ARTICULATION_INTERPHA_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_COR_PULPAIRE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_PULPAIRE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_PULPAIRE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_COR_PLANTAIRE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_PLANTAIRE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_COR_PLANTAIRE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_OEIL_PERDRIX, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_OEIL_PERDRIX)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_OEIL_PERDRIX_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_AMPOULE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_AMPOULE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_AMPOULE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_RHAGADE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_RHAGADE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_RHAGADE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_ECZEMA, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_ECZEMA)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_ECZEMA_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_VERRUE, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_VERRUE)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_VERRUE_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etatSante.HYPERKERATOSES_PSORIASIS, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_PSORIASIS)
+                    </div>
+                </div>
+                <div class="col-md-10 vertical-align">
+                    @Html.DisplayFor(model => model.etatSante.HYPERKERATOSES_PSORIASIS_DESC, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    &nbsp;
+    <button type="button" class="collapsible">Remarques</button>
+    <div class="content">
+        &nbsp;
+        <div class="form-group">
+            <div class="col-md-12 vertical-align">
+                @Html.Raw(Model.etatSante.REMARQUES)
+            </div>
+        </div>
+    </div>
+    &nbsp;
+    <button type="button" class="collapsible">Soins</button>
+    <div class="content">
+        &nbsp;
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Traitement
+                    </th>
+                    <th>
+                        Pansements
+                    </th>
+                    <th>
+                        Conseils
+                    </th>
+                </tr>
+            </thead>
+            @if (Model.soins != null && Model.soins.Count() > 0)
+            {
+                foreach (var item in Model.soins)
+                {
+                    <tr>
+                        <td>
+                            @Html.Raw(item.DATE.Value.ToString("dd/MM/yyyy"))
+                        </td>
+                        <td>
+                            @Html.Raw(item.TRAITEMENT)
+                        </td>
+                        <td>
+                            @Html.Raw(item.PANSEMENTS)
+                        </td>
+                        <td>
+                            @Html.Raw(item.CONSEILS)
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        &nbsp;
+        <p class="pull-right">@Html.ActionLink("Ajouter un soin", "Create", "Soin", new { id = Model.patient.ID }, null)</p>
+    </div>
+</div>
+
+&nbsp;
+<p>@Html.ActionLink("Retour", "Index", null, new { @class="btn btn-default pull-left" })</p>
+&nbsp;
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>

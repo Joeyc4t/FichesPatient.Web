@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<FichePatient.Web.Models.PatientModel>
+@using FichePatient.DAL.UnitOfWork
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Patients pédicure";
+    UnitOfWork UOW = new UnitOfWork();
+}
+<div class="jumbotron">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm("Index", "Patient", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-7 pull-left">
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Recherche" class="btn btn-default" />
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Nouveau patient", "Create", null, new { @class = "btn btn-default pull-right" })
+        </div>
+    </div>
+}
+&nbsp;
+<table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Civilité
+            </th>
+            <th>
+                @Html.ActionLink("Nom de famille", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Prénom
+            </th>
+            <th>
+                Adresse
+            </th>
+            <th>
+                Numéro
+            </th>
+            <th>
+                Localité
+            </th>
+            <th>
+                @Html.ActionLink("Date de naissance", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Téléphone
+            </th>
+            <th>
+                Adresse mail
+            </th>
+            <th></th>
+        </tr>
+    </thead>    
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CIVILITE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOM_FAMILLE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PRENOM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RUE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NUMERO)
+            </td>
+            <td>
+                @Html.Raw(UOW.LocaliteRepository.GetEntity(item.LOCALITE_ID).NOM)
+            </td>
+            <td>
+                @Html.Raw(item.DATE_NAISSANCE.ToString("dd/MM/yyyy"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TELEPHONE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMAIL)
+            </td>
+            <td>
+                @Html.ActionLink("Voir", "Details", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) sur @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
