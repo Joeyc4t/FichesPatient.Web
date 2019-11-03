@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FichePatient.Web", "FichePa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FichePatient.DAL", "FichePatient.DAL\FichePatient.DAL.csproj", "{1571C33C-F1BB-4F78-BF3C-28E9A146EC3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools.Generic", "..\..\source\repos\Tools.Generic\Tools.Generic\Tools.Generic.csproj", "{E709F84C-F1DC-4520-9132-CDF6AC4D6E20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools.Generic", "Tools.Generic\Tools.Generic\Tools.Generic.csproj", "{E709F84C-F1DC-4520-9132-CDF6AC4D6E20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

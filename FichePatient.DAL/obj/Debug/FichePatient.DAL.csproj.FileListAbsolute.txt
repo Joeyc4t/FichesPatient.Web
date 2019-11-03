@@ -7,3 +7,12 @@ C:\Users\Joeyb\Desktop\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.
 C:\Users\Joeyb\Desktop\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.csproj.CopyComplete
 C:\Users\Joeyb\Desktop\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.dll
 C:\Users\Joeyb\Desktop\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.pdb
+C:\GitHub\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.csprojAssemblyReference.cache
+C:\GitHub\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.csproj.CoreCompileInputs.cache
+C:\GitHub\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.dll
+C:\GitHub\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.pdb
+C:\GitHub\FichePatient.Web\FichePatient.DAL\bin\Debug\FichePatient.DAL.dll
+C:\GitHub\FichePatient.Web\FichePatient.DAL\bin\Debug\FichePatient.DAL.pdb
+C:\GitHub\FichePatient.Web\FichePatient.DAL\bin\Debug\Tools.Generic.dll
+C:\GitHub\FichePatient.Web\FichePatient.DAL\bin\Debug\Tools.Generic.pdb
+C:\GitHub\FichePatient.Web\FichePatient.DAL\obj\Debug\FichePatient.DAL.csproj.CopyComplete

@@ -1,0 +1,6 @@
+C:\Users\Joeyb\source\repos\Tools.Generic\Tools.Generic\obj\Debug\Tools.Generic.csproj.CoreCompileInputs.cache
+C:\Users\Joeyb\source\repos\Tools.Generic\Tools.Generic\bin\Debug\Tools.Generic.dll
+C:\Users\Joeyb\source\repos\Tools.Generic\Tools.Generic\bin\Debug\Tools.Generic.pdb
+C:\Users\Joeyb\source\repos\Tools.Generic\Tools.Generic\obj\Debug\Tools.Generic.dll
+C:\Users\Joeyb\source\repos\Tools.Generic\Tools.Generic\obj\Debug\Tools.Generic.pdb
+C:\Users\Joeyb\source\repos\Tools.Generic\Tools.Generic\obj\Debug\Tools.Generic.csprojAssemblyReference.cache
